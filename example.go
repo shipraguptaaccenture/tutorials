@@ -16,6 +16,12 @@ func main() {
 	      panic(err)
 	  }
 
+	  res, err := channel.Publish("team", "Man United")
+	  // await confirmation
+	  if err = res.Wait(); err != nil {
+	      panic(err)
+	  }
+
 	  for msg := range sub.MessageChannel() {
 		  	fmt.Printf("Received message with name '%v' and data '%v'\n", msg.Name, msg.Data)
 		}
