@@ -8,4 +8,15 @@ func main() {
     if err != nil {
       panic(err)
     }
+
+	  channel := client.Channels.Get("sport")
+
+	  sub, err := channel.Subscribe()
+	  if err != nil {
+	      panic(err)
+	  }
+
+	  for msg := range sub.MessageChannel() {
+		  	fmt.Printf("Received message with name '%v' and data '%v'\n", msg.Name, msg.Data)
+		}
 }
